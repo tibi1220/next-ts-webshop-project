@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Review {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(50)
+  review String @db.VarChar(200)
+  stars  Int    @db.SmallInt
+  item   Item   @relation(fields: [itemId], references: [id])
+  itemId Int    @map(name: "item_id")
+
+  @@map(name: "posts")
+}
+
+model Item {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(50)
+  seller      String   @db.VarChar(50)
+  price       Float    @db.Real
+  description String   @db.VarChar(200)
+  imageId     Int      @db.SmallInt
+  reviews     Review[]
+
+  @@map(name: "items")
+}
