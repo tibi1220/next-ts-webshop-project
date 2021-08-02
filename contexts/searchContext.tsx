@@ -1,10 +1,16 @@
 import { createContext } from 'react';
+import type {
+  ValueType,
+  HandlerFunction,
+  SetterFunction,
+} from '../hooks/useInput';
 
-interface ContextProps {
-  input?: any;
-  setInput?: any;
+interface Context {
+  searchQuery?: ValueType;
+  handleSearchQueryChange?: HandlerFunction;
+  setSearchQuery?: SetterFunction;
 }
 
-const SearchContext = createContext<Partial<ContextProps>>({});
+const SearchContext = createContext<Context>({});
 
 export default SearchContext;

@@ -1,10 +1,16 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GetServerSideProps } from 'next';
 import prisma from '../../lib/prisma';
 import ItemCard from '../../components/item/ItemCard';
+import SearchContext from '../../contexts/SearchContext';
 
 type Sorting = (a: Item, b: Item) => number;
+
+interface Props {
+  input: string;
+  items: Item[];
+}
 
 const alphabeticalAsc: Sorting = (a, b) => a.name.localeCompare(b.name);
 const alphabeticalDesc: Sorting = (a, b) => -a.name.localeCompare(b.name);
@@ -20,13 +26,16 @@ const callbacks = [
   mostPopular,
 ];
 
-interface Props {
-  input: string;
-  items: Item[];
-}
-
 const SearchPage: React.FC<Props> = ({ items, input }) => {
   const [orderBy, setOrderBy] = useState<number>(4);
+
+  const { setSearchQuery } = useContext(SearchContext);
+
+  useEffect(() => {
+    if (typeof setSearchQuery === 'function') {
+      setSearchQuery(input);
+    }
+  }, [input, setSearchQuery]);
 
   return (
     <>

@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import { SearchIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import useInput from '../../hooks/useInput';
+import SearchContext from '../../contexts/SearchContext';
 
 const Navbar: React.FC = () => {
+  const { searchQuery, handleSearchQueryChange } = useContext(SearchContext);
+
   const router = useRouter();
-  const [searchQuery, handleSearchQueryChange] = useInput('');
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

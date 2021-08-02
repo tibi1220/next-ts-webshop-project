@@ -13,14 +13,16 @@ const StarDetailed: React.FC<Props> = ({ reviews }) => {
 
   return (
     <div className="flex flex-col mx-auto">
-      <div className="mx-auto">
+      <StarRating stars={avg} />
+      <div className="mx-auto text-yellow-400">
+        (
         {avg
           ? `${avg.toFixed(2)}, ${reviews.length} ${
               reviews.length === 1 ? 'rating' : 'ratings'
             }`
           : 'No reviews yet'}
+        )
       </div>
-      <StarRating stars={avg} />
     </div>
   );
 };
