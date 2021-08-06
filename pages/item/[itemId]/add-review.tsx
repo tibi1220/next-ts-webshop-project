@@ -18,7 +18,7 @@ const AddReview: React.FC = () => {
 
   useEffect(() => {
     setNameIsValid(name.length > 0);
-  }, [name]);
+  }, [name, setNameIsValid]);
   useEffect(() => {
     setDescriptionIsValid(description.length > 10);
   }, [description]);

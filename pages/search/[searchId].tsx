@@ -43,8 +43,8 @@ const SearchPage: React.FC<Props> = ({ items, input }) => {
         <div className="container mx-auto text-center pt-12 text-5xl 2xl:text-6xl font-mono text-gray-800">
           <h1>Search results for &quot;{input}&quot;...</h1>
         </div>
-        <div className="container mx-auto flex justify-between p-4">
-          <div className="hidden sm:block sm:w-col-sm text-center flex-col bg-white p-6 rounded-xl shadow-2xl my-10">
+        <div className="container mx-auto flex justify-between p-4 space-x-4">
+          <div className="hidden sm:block sm:w-1/3 lg:w-col-sm text-center flex-col bg-white p-6 rounded-xl shadow-2xl my-10">
             <form action="" className="space-y-2">
               <div>
                 <label htmlFor="order" className="text-lg font-semibold">
@@ -67,7 +67,7 @@ const SearchPage: React.FC<Props> = ({ items, input }) => {
               </div>
             </form>
           </div>
-          <div className="w-full sm:w-col-lg inline-flex flex-col space-y-6 bg-white p-6 rounded-xl shadow-2xl my-10">
+          <div className="w-full sm:w-2/3 lg:w-col-lg inline-flex flex-col space-y-6 bg-white p-6 rounded-xl shadow-2xl my-10">
             {items.length !== 0 ? (
               items
                 .sort(callbacks[orderBy])
